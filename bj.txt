@@ -22,4 +22,3 @@
 11.iframe 元素会创建包含另外一个文档的内联框架（即行内框架）。
        <iframe name="fm" src="/home/dashboard.html" frameborder="0"></iframe>   src表示当前展示的页面
        <a href="/user/user_pwd.html" target="fm">表示内嵌的页面     只需要将内嵌的页面添加    target="iframe里面的name属性"
-       
