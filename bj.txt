@@ -1,0 +1,25 @@
+ 1.lay-verify="required"表示表单验证中的必填项 此处引入的是layui里面的样式
+ 2. <input type="hidden" name="id" value="" />表示name属性为id的内容隐藏
+ 3.form.verify   layui里面的表单验证部分
+ 4.layer.msg('获取用户信息失败！') 引入的layui里面的弹出功能
+ 5.调用 form.val() 快速为表单赋值   form.val('formUserInfo', res.data)为form表单添加个类名 然后为form表单
+ 引入res.data的数据
+ 6.
+  $('.layui-form').on('submit', function(e) {
+    // 阻止表单的默认提交行为
+    e.preventDefault()
+  } 监听表单的提交事件  一般监听表单提交事件时 都要组织其默认提交行为
+  7.发起ajax 数据请求    data: $(this).serialize()，直接获取res.data 的数据
+  8.调用父页面中的方法，重新渲染用户的头像和用户的信息
+          window.parent.getUserInfo()   如果在子页面中可以通过window.parent调用父页面中的函数
+  9.HTML <input> 标签的 readonly 属性  
+                readonly 属性规定输入字段为只读。
+                只读字段是不能修改的。不过，用户仍然可以使用 tab 键切换到该字段，还可以选中或拷贝其文本。
+            <input type="text" name="country" value="China" readonly="readonly" />  
+                  <input type="text" name="country" value="China" readonly />
+  10.$('.layui-form')[0].reset()    重置表单 jq里面不能直接用reset() 方法 必须将其转化为dom对象
+          $('.layui-form')[0]即可将jq对象转化为dom对象然后引用reset() 方法
+11.iframe 元素会创建包含另外一个文档的内联框架（即行内框架）。
+       <iframe name="fm" src="/home/dashboard.html" frameborder="0"></iframe>   src表示当前展示的页面
+       <a href="/user/user_pwd.html" target="fm">表示内嵌的页面     只需要将内嵌的页面添加    target="iframe里面的name属性"
+       
