@@ -19,6 +19,74 @@
                   <input type="text" name="country" value="China" readonly />
   10.$('.layui-form')[0].reset()    重置表单 jq里面不能直接用reset() 方法 必须将其转化为dom对象
           $('.layui-form')[0]即可将jq对象转化为dom对象然后引用reset() 方法
-11.iframe 元素会创建包含另外一个文档的内联框架（即行内框架）。
+  11.iframe 元素会创建包含另外一个文档的内联框架（即行内框架）。
        <iframe name="fm" src="/home/dashboard.html" frameborder="0"></iframe>   src表示当前展示的页面
        <a href="/user/user_pwd.html" target="fm">表示内嵌的页面     只需要将内嵌的页面添加    target="iframe里面的name属性"
+<<<<<<< HEAD
+=======
+  12.类名不可以有空格  否则类名不成功   
+  13.readonly代表禁止改动该input里面的内容
+
+
+
+  14.简单地说，模板引擎的作用就是取得数据并加以处理，最后显示出数据
+  15.利用ajax渲染数据有以下形式：
+
+  1. data:{id:1（想要获取筛选数组的条件）},相当于筛选出想要的那一组数据
+  直接 data:{id:1（想要获取筛选数组的条件）},获取以id为1的data数组   data数组后台有 直接依据id获取数组
+  
+  2.   $("#cmt-list").html(rows)   可以定义出自己想要的html结构 再将数据渲染到相应的位置
+   自己定义html结构获取data里的数据 渲染到相应的html里面
+  var rows=[]
+  res.data.forEach(item=>{//两个完全不同，push是在数组末尾添加新的元素，返回值是数组的长度。。append是追加元素
+     rows.push(
+                    `<li class="list-group-item">
+                    <span class="badge" style="background-color: #F0AD4E;"> ${item.time} </span>
+                    <span class="badge" style="background-color: #5BC0DE;"> ${item.username} </span>
+                    ${item.content}
+                  </li>`
+                                     )
+                })
+                $("#cmt-list").html(rows)
+              
+3. data:$(this).serialize(), 利用监听表单事件直接获取  利用input里面的name属性获取res.data里面相应的数据
+监听表单的提交事件时$(".layui-form").on('submit',function(e){})
+直接利用name属性 在对应的input里面提交参数
+ 一般执行这行代码 快速渲染出数据 
+ 4.  form.val('formUserInfo', res.data)   封装一个函数时运用 是一个form表单 里面有input 利用name属性
+ 要在表单里加lay-filter="formUserInfo" 
+  例如    <form class="layui-form" lay-filter="formUserInfo"></form>
+  5. 动态渲染页面数据  只有模板引擎可以渲染动态数据
+  使用模板引擎渲染页面的数据   依据用户填写信息 利用模板引擎和ajax获取渲染到页面
+          var htmlStr = template('tpl-table', res)
+          $('tbody').html(htmlStr)
+html里面要建立模板引擎：
+<script type="text/html" id="tpl-table">
+        {{each data}}
+        <tr>
+          <td>{{$value.title}}</td>
+          <td>{{$value.cate_name}}</td>
+          <td>{{$value.pub_date|dataFormat}}</td>
+          <td>{{$value.state}}</td>
+          <td>
+            <button type="button" class="layui-btn layui-btn-xs">编辑</button>
+            <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete" data-id="{{$value.Id}}">删除</button>
+          </td>  
+        {{/each}}
+16.jQuery.ajaxPrefilter()函数用于指定预先处理Ajax参数选项的回调函数。
+在所有参数选项被jQuery.ajax()函数处理之前，你可以使用该函数设置的回调函数来预先更改任何参数选项。
+你还可以指定数据类型(dataType)，从而只预先处理指定数据类型的参数选项。
+该函数可以调用多次，以便于为不同数据类型的AJAX请求指定不同的回调函数。
+
+17.url.indexOf(“login.html”) != -1说明包含 “login.html”  
+indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+注释：indexOf() 方法对大小写敏感！
+注释：如果要检索的字符串值没有出现，则该方法返回 -1。
+18.以 /my 开头的请求路径，需要在请求头中携带 Authorization 身份认证字段，才能正常访问成功
+  if (options.url.indexOf('/my/') !== -1) { 
+    options.headers = {
+      Authorization: localStorage.getItem('token') || ''
+    }
+  }
+Authorization的值可在application里面的localstorage里面的网址里面取   调用 localStorage.getItem（）获取  名为token   如果没有token 就为''  继续执行下面的代码
+>>>>>>> article

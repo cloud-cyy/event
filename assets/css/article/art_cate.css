@@ -14,3 +14,14 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+<<<<<<< HEAD
+=======
+#form-add {
+    padding-top: 20px;
+    padding-right: 30px;
+  }
+  #form-edit {
+    padding-top: 20px;
+    padding-right: 30px;
+  }
+>>>>>>> article
